@@ -285,11 +285,19 @@
 
 /gate/distributions/name dt_distrib
 /gate/distributions/insert Exponential
-/gate/distributions/dt_distrib/setLambda 7570 ns
+/gate/distributions/dt_distrib/setLambda 75700 ns
 
 /gate/digitizer/SinglesNoise/insert noise
 /gate/digitizer/SinglesNoise/noise/setDeltaTDistribution dt_distrib
 /gate/digitizer/SinglesNoise/noise/setEnergyDistribution energy_distrib
+
+/gate/digitizer/name SinglesBlurringNoise
+/gate/digitizer/insert singleChain
+/gate/digitizer/SinglesBlurringNoise/setInputName SinglesBlurring
+/gate/digitizer/SinglesBlurringNoise/insert noise
+/gate/digitizer/SinglesBlurringNoise/noise/setDeltaTDistribution dt_distrib
+/gate/digitizer/SinglesBlurringNoise/noise/setEnergyDistribution energy_distrib
+
 
 
 
@@ -307,11 +315,15 @@
 /gate/digitizer/Coincidences/MultiplesPolicy takeAllGoods
 #/gate/digitizer/Coincidences/allPulseOpenCoincGate true
 
-
-/gate/digitizer/name                            delay
+/gate/digitizer/name                            CoincidencesBlurring
 /gate/digitizer/insert                          coincidenceSorter
-/gate/digitizer/delay/setWindow                 10. ns
-/gate/digitizer/delay/setOffset                 500. ns
+/gate/digitizer/CoincidencesBlurring/setWindow                 10. ns
+/gate/digitizer/CoincidencesBlurring/setOffset                 0. ns
+/gate/digitizer/CoincidencesBlurring/setInputName SinglesBlurring
+/gate/digitizer/CoincidencesBlurring/MultiplesPolicy takeAllGoods
+
+
+
 
 
 
@@ -322,8 +334,10 @@
 /gate/output/tree/addCollection Singles
 /gate/output/tree/addCollection SinglesBlurring
 /gate/output/tree/addCollection SinglesNoise
+/gate/output/tree/addCollection SinglesBlurringNoise
 /gate/output/tree/addCollection Coincidences
-/gate/output/tree/addCollection delay
+/gate/output/tree/addCollection CoincidencesBlurring
+
 
 
 
