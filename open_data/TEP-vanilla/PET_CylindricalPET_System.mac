@@ -271,7 +271,7 @@
 /gate/digitizer/insert singleChain 
 /gate/digitizer/SinglesBlurring/setInputName Singles 
 /gate/digitizer/SinglesBlurring/insert                        blurring
-/gate/digitizer/SinglesBlurring/blurring/setResolution        0.26
+/gate/digitizer/SinglesBlurring/blurring/setResolution        0.05
 /gate/digitizer/SinglesBlurring/blurring/setEnergyOfReference 511. keV
 
 
