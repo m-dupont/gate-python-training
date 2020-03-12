@@ -154,6 +154,7 @@
 /gate/LSO/attachCrystalSD
 /gate/BGO/attachCrystalSD
 
+
 /gate/systems/cylindricalPET/describe
 
 /gate/cylindricalPET/moves/insert             orbiting
@@ -277,6 +278,7 @@
 
 /gate/digitizer/name SinglesNoise
 /gate/digitizer/insert singleChain
+#/gate/digitizer/SinglesBlurring/setInputName Singles 
 
 /gate/distributions/name energy_distrib
 /gate/distributions/insert Gaussian
@@ -357,6 +359,6 @@
 
 /gate/application/setTimeSlice   1 s
 /gate/application/setTimeStart   0 s
-/gate/application/setTimeStop    1 s
+/gate/application/setTimeStop    10 s
 
 /gate/application/startDAQ
