@@ -1,0 +1,156 @@
+#=====================================================
+# VERBOSITY
+#=====================================================
+
+/control/execute                        mac/verbose.mac
+
+#=====================================================
+# GEOMETRY
+#=====================================================
+
+/gate/geometry/setMaterialDatabase      data/GateMaterials.db
+
+# World
+/gate/world/geometry/setXLength         1 m
+/gate/world/geometry/setYLength         1 m
+/gate/world/geometry/setZLength         1 m
+/gate/world/setMaterial                 Air
+
+# Water Box
+/gate/world/daughters/name              waterbox
+/gate/world/daughters/insert            box
+/gate/waterbox/geometry/setXLength      40 cm
+/gate/waterbox/geometry/setYLength      40 cm
+/gate/waterbox/geometry/setZLength      40 cm
+/gate/waterbox/placement/setTranslation 0 0 20 cm
+/gate/waterbox/setMaterial              Water
+/gate/waterbox/vis/setVisible           1
+/gate/waterbox/vis/setColor             blue
+
+# EPID
+/gate/world/daughters/name              scanner
+/gate/world/daughters/insert            box
+/gate/scanner/geometry/setXLength       40 cm
+/gate/scanner/geometry/setYLength       40 cm
+/gate/scanner/geometry/setZLength       1 mm
+/gate/scanner/placement/setTranslation  0 0 45 cm
+/gate/scanner/setMaterial               GSO
+/gate/scanner/vis/setColor              magenta
+/gate/scanner/attachCrystalSD
+/gate/systems/scanner/level1/attach     scanner
+
+#=====================================================
+# PHYSICS
+#=====================================================
+
+/gate/physics/addPhysicsList            emstandard_opt3
+
+/gate/physics/Gamma/SetCutInRegion      world 10 mm
+/gate/physics/Electron/SetCutInRegion   world 10 mm
+/gate/physics/Positron/SetCutInRegion   world 10 mm
+
+/gate/physics/Gamma/SetCutInRegion      waterbox 0.1 mm
+/gate/physics/Electron/SetCutInRegion   waterbox 0.1 mm
+/gate/physics/Positron/SetCutInRegion   waterbox 0.1 mm
+
+/gate/physics/displayCuts
+
+#=====================================================
+# OUTPUTS
+#=====================================================
+
+#-----------------------------------------------------
+# Water Box outputs
+#-----------------------------------------------------
+
+# 1D DoseActor (along Z) - ASCII format
+/gate/actor/addActor                          DoseActor  depthdose
+/gate/actor/depthdose/save                    output/1D-depth.txt
+/gate/actor/depthdose/attachTo                waterbox
+/gate/actor/depthdose/stepHitType             random
+/gate/actor/depthdose/setPosition             0 0 0 cm
+/gate/actor/depthdose/setResolution           1 1 100
+/gate/actor/depthdose/enableEdep              true
+/gate/actor/depthdose/enableUncertaintyEdep   true
+/gate/actor/depthdose/enableDose              false
+
+# 3D DoseActor - binary (image) format
+/gate/actor/addActor                          DoseActor  dose3D
+/gate/actor/dose3D/save                       output/3D.mhd
+/gate/actor/dose3D/attachTo                   waterbox
+/gate/actor/dose3D/stepHitType                random
+/gate/actor/dose3D/setPosition                0 0 0 cm
+/gate/actor/dose3D/setResolution              50 50 50
+/gate/actor/dose3D/enableEdep                 true
+/gate/actor/dose3D/enableUncertaintyEdep      true
+/gate/actor/dose3D/enableDose                 false
+
+#-----------------------------------------------------
+# EPID (system) outputs
+#-----------------------------------------------------
+
+# List of interactions - ASCII or binary format
+#/gate/output/ascii/enable
+#/gate/output/ascii/setFileName                output/list-
+#/gate/output/ascii/setOutFileHitsFlag         1
+#/gate/output/ascii/setOutFileSinglesFlag      0
+/gate/output/binary/enable
+/gate/output/binary/setFileName               output/list-
+/gate/output/binary/setOutFileHitsFlag        1
+/gate/output/binary/setOutFileSinglesFlag     0
+
+# Tree of interactions - ROOT and NumPy format
+/gate/output/tree/enable
+/gate/output/tree/addFileName                 output/tree.npy
+/gate/output/tree/addFileName                 output/tree.root
+/gate/output/tree/hits/enable
+
+#-----------------------------------------------------
+# Simulation statistics
+#-----------------------------------------------------
+
+/gate/actor/addActor                          SimulationStatisticActor stat
+/gate/actor/stat/save                         output/simu-stats.txt
+/gate/actor/stat/saveEveryNSeconds            30
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+/gate/run/initialize
+
+#=====================================================
+# BEAMS
+#=====================================================
+
+/gate/source/addSource                  mybeam gps
+/gate/source/mybeam/gps/particle        gamma
+/gate/source/mybeam/gps/pos/type        Beam
+/gate/source/mybeam/gps/pos/rot1        0 1 0
+/gate/source/mybeam/gps/pos/rot2        1 0 0
+/gate/source/mybeam/gps/pos/shape       Circle
+/gate/source/mybeam/gps/pos/centre      0 0 -40 cm
+/gate/source/mybeam/gps/pos/sigma_x     3 mm
+/gate/source/mybeam/gps/pos/sigma_y     3 mm
+/gate/source/mybeam/gps/ene/mono        10 MeV
+/gate/source/mybeam/gps/ene/type        Gauss
+/gate/source/mybeam/gps/ene/sigma       1.0 MeV
+/gate/source/mybeam/gps/direction       0 0 1
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+/control/execute mac/visu.mac
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+# JamesRandom Ranlux64 MersenneTwister
+/gate/random/setEngineName                  MersenneTwister
+/gate/random/setEngineSeed                  auto
+
+/gate/application/setTotalNumberOfPrimaries 1e5
+/gate/application/start
+
