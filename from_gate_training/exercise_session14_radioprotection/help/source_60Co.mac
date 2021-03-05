@@ -1,0 +1,9 @@
+/gate/source/addSource cobalt60
+/gate/source/cobalt60/gps/particle ion
+/gate/source/cobalt60/gps/ion 27 60 0 0 
+/gate/source/cobalt60/setActivity 100. becquerel
+/gate/source/cobalt60/setForcedUnstableFlag true
+/gate/source/cobalt60/useDefaultHalfLife
+/gate/source/cobalt60/gps/centre 0 -214.2 8.81 cm #2cm
+/gate/source/cobalt60/gps/type Point
+/gate/source/cobalt60/gps/angtype iso

@@ -1,0 +1,9 @@
+/gate/source/addSource cesium137
+/gate/source/cesium137/gps/particle ion
+/gate/source/cesium137/gps/ion 55 137 0 0 
+/gate/source/cesium137/setActivity 100. becquerel
+/gate/source/cesium137/setForcedUnstableFlag true
+/gate/source/cesium137/useDefaultHalfLife
+/gate/source/cesium137/gps/pos/centre 0 -214.2 8.81 cm #2cm
+/gate/source/cesium137/gps/pos/type Point
+/gate/source/cesium137/gps/ang/type iso

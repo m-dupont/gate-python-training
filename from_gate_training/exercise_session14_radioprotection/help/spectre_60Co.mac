@@ -1,0 +1,22 @@
+/gate/source/addSource 60Co gps
+/gate/source/60Co/gps/particle gamma
+/gate/source/60Co/gps/energytype UserSpectrum
+/gate/source/60Co/gps/setSpectrumFile data/60Co.txt
+/gate/source/60Co/setIntensity 100
+/gate/source/60Co/gps/type Point
+/gate/source/60Co/gps/angtype iso
+
+######### Angle 0° ##################
+/gate/source/60Co/gps/centre 0 -214.2 8.81 cm #2cm
+#/gate/source/60Co/gps/centre 0 -166.2 14.5 cm #50cm
+#/gate/source/60Co/gps/centre 0 -116.2 14.5 cm #100cm
+#/gate/source/60Co/gps/centre 0 -66.2 14.5 cm #150cm
+#/gate/source/60Co/gps/centre 0 -16.2 14.5 cm #200cm
+
+############ Various angles ################
+#/gate/source/60Co/gps/centre 0 -116.2 14.5 cm #100cm 0deg
+#/gate/source/60Co/gps/centre 34.2 -122.23 14.5 cm #100cm 20deg
+#/gate/source/60Co/gps/centre 64.28 -139.59 14.5 cm #100cm 40deg
+#/gate/source/60Co/gps/centre 86.60 -166.2 14.5 cm #100cm 60deg
+#/gate/source/60Co/gps/centre 98.48 -198.83 14.5 cm #100cm 80deg
+

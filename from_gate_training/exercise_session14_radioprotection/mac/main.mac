@@ -1,0 +1,76 @@
+#==============================================================================================
+# Geometry (world)
+#==============================================================================================
+
+/gate/geometry/setMaterialDatabase  data/GateMaterials.db
+/gate/world/setMaterial             G4_CONCRETE
+/gate/world/geometry/setXLength     8 m 
+/gate/world/geometry/setYLength     8 m 
+/gate/world/geometry/setZLength     4 m
+
+/control/execute mac/room.mac 
+
+#============================================================================================
+# Detector
+#============================================================================================
+
+/control/execute mac/detector_NaI.mac
+
+#==============================================================================================
+# Object  
+#==============================================================================================
+
+/control/execute mac/table.mac
+
+#==============================================================================================
+# Actor 
+#==============================================================================================
+
+/control/execute mac/actor.mac
+
+#==============================================================================================
+# Physics
+#==============================================================================================
+
+/gate/physics/addPhysicsList emstandard_opt3
+/gate/physics/addProcess RadioactiveDecay 
+
+/gate/physics/addAtomDeexcitation
+/process/em/fluo  true
+/process/em/auger true			 
+
+#==============================================================================================
+# Particles statistics  
+#==============================================================================================
+
+/gate/actor/addActor  SimulationStatisticActor stat
+/gate/actor/stat/save output/photons_statistic.txt
+
+#==============================================================================================
+# Initialization 
+#==============================================================================================
+/gate/run/initialize
+
+#==============================================================================================
+# Source 
+#==============================================================================================
+
+#/control/execute mac/source_137Cs.mac
+/control/execute mac/spectre_137Cs.mac
+
+#==============================================================================================
+# Main program
+#==============================================================================================
+
+#/control/execute mac/visu.mac 
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+####### For G4RadioactiveDecay #########
+#/gate/application/setTimeSlice 100 s
+#/gate/application/setTimeStart 0 s
+#/gate/application/setTimeStop 100 s
+
+/gate/application/setTotalNumberOfPrimaries 1000000
+/gate/application/start

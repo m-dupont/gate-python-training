@@ -1,0 +1,10 @@
+/gate/room/daughters/name                            table1
+/gate/room/daughters/insert                          box
+/gate/table1/geometry/setXLength         1 m
+/gate/table1/geometry/setYLength         0.6 m
+/gate/table1/geometry/setZLength         10 cm
+/gate/table1/placement/setTranslation 	 0.0000 -2.45 0.000 m
+/gate/table1/setMaterial                 Plastic
+/gate/table1/vis/setVisible              1
+/gate/table1/vis/setColor                white
+/gate/table1/vis/forceSolid
