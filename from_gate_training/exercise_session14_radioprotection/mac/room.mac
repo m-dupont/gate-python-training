@@ -1,0 +1,9 @@
+/gate/world/daughters/name                            room
+/gate/world/daughters/insert                          box
+/gate/room/geometry/setXLength         7.8 m
+/gate/room/geometry/setYLength         7.8 m
+/gate/room/geometry/setZLength         3.8 m
+/gate/room/placement/setTranslation    0.0000 0.0000 0.000 m
+/gate/room/setMaterial                 Air
+/gate/room/vis/setVisible              1
+/gate/room/vis/setColor                blue

@@ -1,0 +1,72 @@
+/gate/room/daughters/name             detector
+/gate/room/daughters/insert           cylinder
+/gate/detector/geometry/setRmin         0 mm
+/gate/detector/geometry/setRmax         3.81 cm
+/gate/detector/geometry/setHeight       7.62 cm
+/gate/detector/setMaterial              NaI
+/gate/detector/placement/setRotationAxis 1 0 0
+/gate/detector/placement/setRotationAngle 90 deg
+/gate/detector/vis/setVisible              1
+/gate/detector/vis/setColor                yellow
+/gate/detector/vis/forceSolid
+
+/gate/room/daughters/name             PMT
+/gate/room/daughters/insert           cylinder
+/gate/PMT/geometry/setRmin         0 mm
+/gate/PMT/geometry/setRmax         3.81 cm
+/gate/PMT/geometry/setHeight       7.62 cm
+/gate/PMT/setMaterial              SiO2
+/gate/PMT/placement/setRotationAxis 1 0 0
+/gate/PMT/placement/setRotationAngle 90 deg
+/gate/PMT/vis/setVisible              1
+/gate/PMT/vis/setColor                blue
+/gate/PMT/vis/forceSolid
+
+/gate/room/daughters/name                            envelope
+/gate/room/daughters/insert                          cylinder
+/gate/envelope/geometry/setRmin         4.05 cm
+/gate/envelope/geometry/setRmax         4.10 cm
+/gate/envelope/geometry/setHeight       15.34 cm
+/gate/envelope/setMaterial                 Aluminium
+/gate/envelope/placement/setRotationAxis 1 0 0
+/gate/envelope/placement/setRotationAngle 90 deg
+/gate/envelope/vis/setVisible              1
+/gate/envelope/vis/setColor                red
+
+/gate/room/daughters/name                            cap1
+/gate/room/daughters/insert                          cylinder
+/gate/cap1/geometry/setRmin         0 cm
+/gate/cap1/geometry/setRmax         4.10 cm
+/gate/cap1/geometry/setHeight       0.05 cm
+/gate/cap1/setMaterial                 Aluminium
+/gate/cap1/placement/setRotationAxis 1 0 0
+/gate/cap1/placement/setRotationAngle 90 deg
+/gate/cap1/vis/setVisible              1
+/gate/cap1/vis/setColor                red
+
+/gate/room/daughters/name                            cap2
+/gate/room/daughters/insert                          cylinder
+/gate/cap2/geometry/setRmin         0 cm
+/gate/cap2/geometry/setRmax         4.10 cm
+/gate/cap2/geometry/setHeight       0.05 cm
+/gate/cap2/setMaterial                 Aluminium
+/gate/cap2/placement/setRotationAxis 1 0 0
+/gate/cap2/placement/setRotationAngle 90 deg
+/gate/cap2/vis/setVisible              1
+/gate/cap2/vis/setColor                red
+
+
+##### Positions ##########
+
+/gate/detector/placement/setTranslation 0.0000 -220 8.81 cm
+/gate/PMT/placement/setTranslation 0.0000 -227.62 8.81 cm
+/gate/envelope/placement/setTranslation 0.0000 -223.86 9.10 cm
+/gate/cap1/placement/setTranslation 0.0000 -216.115 9.10 cm
+/gate/cap2/placement/setTranslation 	  0.0000 -231.58 9.10 cm
+
+######### Cuts #############
+
+/gate/physics/Gamma/SetCutInRegion      detector 1 mm
+/gate/physics/Electron/SetCutInRegion   detector 1 mm
+/gate/physics/Positron/SetCutInRegion   detector 1 mm
+/gate/physics/Proton/SetCutInRegion     detector 1 mm
