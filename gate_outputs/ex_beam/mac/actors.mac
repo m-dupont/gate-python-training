@@ -1,0 +1,25 @@
+# 1D DoseActor (along Z) - ASCII format
+/gate/actor/addActor                          DoseActor  depthdose
+/gate/actor/depthdose/save                    output/1D-depth.txt
+/gate/actor/depthdose/attachTo                waterbox
+/gate/actor/depthdose/stepHitType             random
+/gate/actor/depthdose/setPosition             0 0 0 cm
+/gate/actor/depthdose/setResolution           1 1 100
+/gate/actor/depthdose/enableEdep              true
+/gate/actor/depthdose/enableUncertaintyEdep   true
+/gate/actor/depthdose/enableSquaredEdep	      true
+/gate/actor/depthdose/enableDose              false
+
+
+# 3D DoseActor - binary (image) format
+/gate/actor/addActor                          DoseActor  dose3D
+/gate/actor/dose3D/save                       output/3D.mhd
+/gate/actor/dose3D/attachTo                   waterbox
+/gate/actor/dose3D/stepHitType                random
+/gate/actor/dose3D/setPosition                0 0 0 cm
+/gate/actor/dose3D/setResolution              300 200 100
+/gate/actor/dose3D/enableEdep                 true
+/gate/actor/dose3D/enableUncertaintyEdep      true
+/gate/actor/dose3D/enableSquaredEdep	      true
+/gate/actor/dose3D/enableDose                 false
+/gate/actor/dose3D/enableNumberOfHits         true

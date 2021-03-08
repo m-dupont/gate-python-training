@@ -77,7 +77,7 @@
 #-----------------------------------------------------
 
 
-/control/execute                        mac/actors.mac
+#/control/execute                        mac/actors.mac
 
 
 
@@ -87,8 +87,8 @@
 /gate/systems/scanner/level1/attach     EPID
 /gate/systems/scanner/level2/attach     waterbox
 
-/gate/EPID/attachCrystalSD
-#/gate/waterbox/attachCrystalSD
+#/gate/EPID/attachCrystalSD
+/gate/waterbox/attachCrystalSD
 
 
 #-----------------------------------------------------
@@ -107,8 +107,8 @@
 
 # Tree of interactions - ROOT and NumPy format
 /gate/output/tree/enable
-/gate/output/tree/addFileName                 output/tree.npy
-/gate/output/tree/addFileName                 output/tree.root
+/gate/output/tree/addFileName                 output/tree_water.npy
+/gate/output/tree/addFileName                 output/tree_water.root
 /gate/output/tree/hits/enable
 
 #-----------------------------------------------------
